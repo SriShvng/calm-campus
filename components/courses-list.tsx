@@ -1,4 +1,4 @@
-import { Category, Course } from "@prisma/client";
+import { Course } from "@prisma/client";
 
 import { CourseCard } from "@/components/course-card";
 
