@@ -81,11 +81,6 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
             <h1 className="text-2xl font-medium">Course setup</h1>
-            <div>
-              {userNameList!.map((user) => (
-                <div key={user.id}>{user.firstName}</div>
-              ))}
-            </div>
             <span className="text-sm text-slate-700">
               Complete all fields {completionText}
             </span>
@@ -145,11 +140,6 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               </div>
             </div>
             <div></div>
-          </div>
-          <div>
-            {userNameList!.map((user) => (
-              <div key={user.id}>{user.firstName}</div>
-            ))}
           </div>
           <div></div>
         </div>
