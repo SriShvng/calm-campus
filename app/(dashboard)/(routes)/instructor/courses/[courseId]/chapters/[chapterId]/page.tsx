@@ -11,7 +11,7 @@ import { ChapterDescriptionForm } from "./_components/chapter-description-form";
 import { ChapterVideoForm } from "./_components/chapter-video-form";
 import { ChapterActions } from "./_components/chapter-actions";
 import { ChapterTitleForm } from "./_components/chapter-title";
-import { AssignmentForm } from "./_components/attachment-form";
+import { AssignmentForm } from "./_components/assignment-form";
 
 const ChapterIdPage = async ({
   params
