@@ -8,6 +8,7 @@ type CourseWithProgress = Course & {
   progress: number | null;
 };
 
+// dashboard courses include two types: completedCourses and coursesInProgress
 type DashboardCourses = {
   completedCourses: CourseWithProgress[];
   coursesInProgress: CourseWithProgress[];
@@ -15,6 +16,7 @@ type DashboardCourses = {
 
 export const getDashboardCourses = async (userId: string): Promise<DashboardCourses> => {
   try {
+    // get courses user is enrolled in from the database
     const enrolledCourses = await db.enroll.findMany({
       where: {
         userId: userId,
@@ -34,6 +36,7 @@ export const getDashboardCourses = async (userId: string): Promise<DashboardCour
 
     const courses = enrolledCourses.map((enroll) => enroll.course) as CourseWithProgress[];
 
+    // get course progress
     for (let course of courses) {
       const progress = await getProgress(userId, course.id);
       course["progress"] = progress;

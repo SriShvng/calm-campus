@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 
+
+// api for unpublishing the assignment 
 export async function PATCH(
   req: Request,
   { params }: { params: { courseId: string; chapterId: string } }
@@ -25,6 +27,7 @@ export async function PATCH(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
+    // get unpublished chapters
     const unpublishedChapter = await db.chapter.update({
       where: {
         id: params.chapterId,
@@ -34,6 +37,8 @@ export async function PATCH(
         isPublished: false,
       }
     });
+
+    // get published chapters
 
     const publishedChaptersInCourse = await db.chapter.findMany({
       where: {

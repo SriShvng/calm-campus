@@ -21,6 +21,8 @@ export async function POST(
       }
     });
 
+    // check if user if already enrolled or not
+
     const enroll = await db.enroll.findUnique({
       where: {
         userId_courseId: {

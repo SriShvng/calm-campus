@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { isInstructor } from "@/lib/instructor";
 
+// using uploadthing api library to handle uploads
 const f = createUploadthing();
  
 const handleAuth = () => {

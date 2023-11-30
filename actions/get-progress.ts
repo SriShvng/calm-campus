@@ -15,8 +15,10 @@ export const getProgress = async (
       }
     });
 
+    // store all published chapters
     const publishedChapterIds = publishedChapters.map((chapter) => chapter.id);
 
+    // find valid completed chapters by the user
     const validCompletedChapters = await db.userProgress.count({
       where: {
         userId: userId,
@@ -27,6 +29,7 @@ export const getProgress = async (
       }
     });
 
+      // calculate the progress percentave
     const progressPercentage = (validCompletedChapters / publishedChapterIds.length) * 100;
 
     return progressPercentage;

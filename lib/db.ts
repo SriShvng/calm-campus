@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
+
+// database setip
 declare global {
   var prisma: PrismaClient | undefined;
 };

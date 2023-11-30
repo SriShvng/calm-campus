@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 
+
+// api for reordering the chapters
 export async function POST(
   req: Request,
   { params }: { params: { courseId: string } }

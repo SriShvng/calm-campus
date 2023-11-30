@@ -4,6 +4,7 @@ import { NavbarRoutes } from "@/components/navbar-routes";
 
 import { CourseMobileSidebar } from "./course-mobile-sidebar";
 
+// Course navbar showes the chapter progress
 interface CourseNavbarProps {
   course: Course & {
     chapters: (Chapter & {

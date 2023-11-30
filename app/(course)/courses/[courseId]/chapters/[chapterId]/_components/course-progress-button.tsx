@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
 
+// course progress props
 interface CourseProgressButtonProps {
   chapterId: string;
   courseId: string;
@@ -28,10 +29,12 @@ export const CourseProgressButton = ({
     try {
       setIsLoading(true);
 
+      // get course progress
       await axios.put(`/api/courses/${courseId}/chapters/${chapterId}/progress`, {
         isCompleted: !isCompleted
       });
 
+      // if the chapter is completed, render the next chapter
       if (!isCompleted && nextChapterId) {
         router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
       }

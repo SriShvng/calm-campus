@@ -3,6 +3,10 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 
+// api for assignmentid 
+
+
+// delete assignment
 export async function DELETE(
   req: Request,
   { params }: { params: { chapterId: string, assignmentId: string } }

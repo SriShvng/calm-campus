@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 
+
+// api for publishing the course
 export async function PATCH(
   req: Request,
   { params }: { params: { courseId: string } }

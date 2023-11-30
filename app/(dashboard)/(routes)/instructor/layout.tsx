@@ -9,7 +9,9 @@ const InstructorLayout = ({
 }) => {
   const { userId } = auth();
 
+  // check if the user is the instructor or not
   if (!isInstructor(userId)) {
+    // if not redirect to home
     return redirect("/");
   }
 

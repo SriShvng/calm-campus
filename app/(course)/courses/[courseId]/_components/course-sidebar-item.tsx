@@ -9,7 +9,6 @@ interface CourseSidebarItemProps {
   id: string;
   isCompleted: boolean;
   courseId: string;
-//   isLocked: boolean;
 };
 
 export const CourseSidebarItem = ({
@@ -23,6 +22,8 @@ export const CourseSidebarItem = ({
 
   const isActive = pathname?.includes(id);
 
+
+  // on button click redirected to individual chapter
   const onClick = () => {
     router.push(`/courses/${courseId}/chapters/${id}`);
   }

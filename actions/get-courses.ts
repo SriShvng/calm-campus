@@ -18,6 +18,7 @@ export const getCourses = async ({
   title,
 }: GetCourses): Promise<CourseWithProgress[]> => {
   try {
+    // get courses with the with required parameters
     const courses = await db.course.findMany({
       where: {
         isPublished: true,
@@ -54,6 +55,7 @@ export const getCourses = async ({
           }
         }
 
+        // get user progress
         const progressPercentage = await getProgress(userId, course.id);
 
         return {

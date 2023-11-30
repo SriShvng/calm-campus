@@ -16,6 +16,7 @@ interface ChapterActionsProps {
   isPublished: boolean;
 };
 
+// Defining chapter actions of publishing, unpublishing and deleting the chapter
 export const ChapterActions = ({
   disabled,
   courseId,
@@ -25,18 +26,22 @@ export const ChapterActions = ({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
+  // on click execute this function
   const onClick = async () => {
     try {
       setIsLoading(true);
 
       if (isPublished) {
+        // if the chapter has been publish, call unpublish api
         await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/unpublish`);
         toast.success("Chapter unpublished");
-      } else {
+      } else {        
+        // else if the chapter has not been publish, call publish api
         await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/publish`);
         toast.success("Chapter published");
       }
 
+      // refresh the router
       router.refresh();
     } catch {
       toast.error("Something went wrong");

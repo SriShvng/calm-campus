@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 
+// api to get user progress
 export async function PUT(
   req: Request,
   { params }: { params: { courseId: string; chapterId: string } }

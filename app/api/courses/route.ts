@@ -5,6 +5,8 @@ import { db } from "@/lib/db";
 
 import { isInstructor } from "@/lib/instructor";
 
+
+// api for creating course
 export async function POST(
   req: Request,
 ) {

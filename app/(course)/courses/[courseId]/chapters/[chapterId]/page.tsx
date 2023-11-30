@@ -21,6 +21,7 @@ const ChapterIdPage = async ({
     return redirect("/");
   } 
 
+  // defining parameters of the getChapter function
   const {
     chapter,
     course,
@@ -35,11 +36,13 @@ const ChapterIdPage = async ({
     courseId: params.courseId,
   });
 
+  // check if chapter and course exist
   if (!chapter || !course) {
     return redirect("/")
   }
 
 
+  // check if the course if fully completed or not
   const completeOnEnd = !!enroll && !userProgress?.isCompleted;
 
   return ( 

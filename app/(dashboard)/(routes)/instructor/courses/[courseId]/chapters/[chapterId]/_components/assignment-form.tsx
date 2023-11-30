@@ -12,6 +12,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
 
+
+// Defining the assignment form
 interface AssignmentFormProps {
   initialData: Chapter & { assignments: Assignment[] };
   courseId: string,
@@ -34,6 +36,7 @@ export const AssignmentForm = ({
 
   const router = useRouter();
 
+  // on submit, call the upload api
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.post(`/api/courses/${courseId}/chapters/${chapterId}/assignments`, values);
@@ -45,6 +48,7 @@ export const AssignmentForm = ({
     }
   };
 
+  // on delete, call the assignments delete enpoint with the id
   const onDelete = async (id: string) => {
     try {
       setDeletingId(id);
@@ -111,6 +115,7 @@ export const AssignmentForm = ({
           )}
         </>
       )}
+      // If the instructor editing the chapter
       {isEditing && (
         <div>
           <FileUpload

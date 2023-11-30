@@ -9,6 +9,8 @@ const { Video } = new Mux(
   process.env.MUX_TOKEN_SECRET!,
 );
 
+// api for unpublishing the course
+
 export async function DELETE(
   req: Request,
   { params }: { params: { courseId: string } }

@@ -12,17 +12,21 @@ import { ChaptersForm } from "./_components/chapters-form";
 import { Banner } from "@/components/banner";
 import { Actions } from "./_components/actions";
 
+
+// Home page for course id 
 const CourseIdPage = async ({
   params
 }: {
   params: { courseId: string }
 }) => {
+  // get user form clerk
   const { userId } = auth();
 
   if (!userId) {
     return redirect("/");
   }
 
+  // get all the courses along with the modules form the database
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,
@@ -41,6 +45,7 @@ const CourseIdPage = async ({
     return redirect("/");
   }
 
+  // Defining all the requiredfields for the course to be published
   const requiredFields = [
     course.title,
     course.description,
@@ -48,7 +53,9 @@ const CourseIdPage = async ({
     course.chapters.some(chapter => chapter.isPublished),
   ];
 
+  // totalfileds
   const totalFields = requiredFields.length;
+  //calcualte the completed fields
   const completedFields = requiredFields.filter(Boolean).length;
 
   const completionText = `(${completedFields}/${totalFields})`
@@ -109,6 +116,7 @@ const CourseIdPage = async ({
                     </h2>
                 </div>
                 <ChaptersForm
+                // pass intial data
                 initialData={course}
                 courseId={course.id}
                 />

@@ -13,6 +13,8 @@ import { ChapterActions } from "./_components/chapter-actions";
 import { ChapterTitleForm } from "./_components/chapter-title";
 import { AssignmentForm } from "./_components/assignment-form";
 
+
+// Chapter page that has courseId and chapterId as parameters
 const ChapterIdPage = async ({
   params
 }: {
@@ -24,6 +26,7 @@ const ChapterIdPage = async ({
     return redirect("/");
   }
 
+  // Find unique chapter from the database
   const chapter = await db.chapter.findUnique({
     where: {
       id: params.chapterId,
@@ -34,6 +37,7 @@ const ChapterIdPage = async ({
     },
   });
 
+  // get the chapter data from the database
   const chapterData = await db.chapter.findUnique({
     where: {
       id: params.chapterId,
@@ -44,6 +48,7 @@ const ChapterIdPage = async ({
     },
   });
 
+  // get assignments for the chapter
   const assignments = await db.assignment.findUnique({
     where: {
       id: params.chapterId,
@@ -55,6 +60,8 @@ const ChapterIdPage = async ({
     return redirect("/")
   }
 
+  // defining the required fields
+  // note that assignment is not a required field.
   const requiredFields = [
     chapter.title,
     chapter.description,

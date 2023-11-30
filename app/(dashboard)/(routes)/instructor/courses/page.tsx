@@ -7,12 +7,15 @@ import { DataTable } from "./_components/data-table";
 import { columns } from "./_components/columns";
 
 const CoursesPage = async () => {
+  // get the userId from the clerk
   const { userId } = auth();
 
+  // check if the userid exist or not
   if (!userId) {
     return redirect("/");
   }
 
+  // get all the courses for the instructor
   const courses = await db.course.findMany({
     where: {
       userId,
@@ -29,4 +32,5 @@ const CoursesPage = async () => {
    );
 }
  
+// export coursespage
 export default CoursesPage;

@@ -9,6 +9,7 @@ import { Loader2, Lock } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+// Defining the videoplayer component
 interface VideoPlayerProps {
   playbackId: string;
   courseId: string;

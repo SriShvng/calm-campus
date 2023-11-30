@@ -5,12 +5,13 @@ import { currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 
-
+// Page for each course 
 const CourseIdPage = async ({
   params
 }: {
   params: { courseId: string; }
 }) => {
+  // get course from the database with the courseId from the params
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,
@@ -27,16 +28,20 @@ const CourseIdPage = async ({
     }
   });
 
+  // if course does not exist redirect 
   if (!course) {
     return redirect("/");
   }
 
+  // get current user from clerk
   const user = await currentUser();
 
+    // check if the user is authorised or not
   if (!user || !user.id || !user.emailAddresses?.[0]?.emailAddress) {
     return new NextResponse("Unauthorized", { status: 401 });
-  }
+  } 
 
+    // check if the user is already enrolled or not. 
   const enroll = await db.enroll.findUnique({
     where: {
       userId_courseId: {
@@ -46,6 +51,7 @@ const CourseIdPage = async ({
     }
   });
 
+    //enroll the user in the course
   if(!enroll){
     const enrolled = await db.enroll.create({
       data: {
@@ -56,6 +62,7 @@ const CourseIdPage = async ({
 
   }
 
+  // after enrolling, redirect to the first chapter of the course. 
   return redirect(`/courses/${course.id}/chapters/${course.chapters[0].id}`);
 }
  

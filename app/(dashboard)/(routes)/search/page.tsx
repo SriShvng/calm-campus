@@ -6,7 +6,7 @@ import { SearchInput } from "@/components/search-input";
 import { getCourses } from "@/actions/get-courses";
 import { CoursesList } from "@/components/courses-list";
 
-
+// browse courses page 
 interface SearchPageProps {
   searchParams: {
     title: string;
@@ -16,13 +16,15 @@ interface SearchPageProps {
 const SearchPage = async ({
   searchParams
 }: SearchPageProps) => {
+  //get user from clerk
   const { userId } = auth();
 
+  // check user validation
   if (!userId) {
     return redirect("/");
   }
 
-
+  // get courses from the database
   const courses = await getCourses({
     userId,
     ...searchParams,

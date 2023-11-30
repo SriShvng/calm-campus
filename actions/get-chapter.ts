@@ -1,12 +1,15 @@
 import { db } from "@/lib/db";
 import { Assignment, Chapter } from "@prisma/client";
 
+
+// API to get the chapters 
 interface GetChapterProps {
   userId: string;
   courseId: string;
   chapterId: string;
 };
 
+// the parameters for this function are userId, courseId, chapterId
 export const getChapter = async ({
   userId,
   courseId,
@@ -22,6 +25,7 @@ export const getChapter = async ({
       }
     });
 
+    // get course from the database
     const course = await db.course.findUnique({
       where: {
         isPublished: true,
@@ -32,6 +36,7 @@ export const getChapter = async ({
       }
     });
 
+    // get chapter from the database
     const chapter = await db.chapter.findUnique({
       where: {
         id: chapterId,
@@ -49,6 +54,7 @@ export const getChapter = async ({
 
     
 
+    // get assignments from the database
     assignments = await db.assignment.findMany({
         where: {
           chapterId: chapterId
@@ -62,6 +68,7 @@ export const getChapter = async ({
         }
       });
 
+      // get next chapter from the database
       nextChapter = await db.chapter.findFirst({
         where: {
           courseId: courseId,
@@ -74,8 +81,8 @@ export const getChapter = async ({
           position: "asc",
         }
       });
-    // }
 
+    // get userprogress
     const userProgress = await db.userProgress.findUnique({
       where: {
         userId_chapterId: {

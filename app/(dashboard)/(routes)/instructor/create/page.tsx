@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
+// Create course page
+
+// import ui components
 import {
   Form,
   FormControl,
@@ -26,6 +29,7 @@ const formSchema = z.object({
   }),
 });
 
+// define the createPage
 const CreatePage = () => {
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
