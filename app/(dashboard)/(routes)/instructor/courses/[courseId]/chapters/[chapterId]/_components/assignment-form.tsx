@@ -115,7 +115,6 @@ export const AssignmentForm = ({
           )}
         </>
       )}
-      // If the instructor editing the chapter
       {isEditing && (
         <div>
           <FileUpload
