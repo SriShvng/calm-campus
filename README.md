@@ -61,11 +61,13 @@ There are two types of users in Calm Campus:
 
 ## Getting Started
 
-Provide instructions on how to install and run your application here.
+The instruction regarding installation along with the environment variables have been provided separately. 
 
-## Contributing
+## How to access
+	https://calm-campus.vercel.app/
 
-Provide instructions on how contributors can help improve your project.
+## Contributors
+	Saarthak, Pavan, Shivangi, Sindhu, Gouri
 
 ## License
 
